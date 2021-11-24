@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) 
+    {
+        vector<int>ov(26,INT_MAX);
+        for(string s:words)
+        {
+            vector<int>cn(26,0);
+            for(char c:s)
+            {
+                cn[c-'a']++;
+            }
+            for(int i=0;i<26;i++)
+            {
+                ov[i]=min(ov[i],cn[i]);
+            }
+        }
+        vector<string>v;
+        for(int i=0;i<26;i++)
+        {
+            while(ov[i]--)
+            {
+                v.push_back(string(1,'a'+i));
+            }
+        }
+        return v;
+        
+    }
+};
